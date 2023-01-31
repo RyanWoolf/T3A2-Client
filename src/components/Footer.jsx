@@ -2,7 +2,6 @@ import React from 'react'
 import email from '../assets/icons/icon_mail.png'
 import insta from '../assets/icons/instagram.svg'
 import facebook from '../assets/icons/facebook.svg'
-import github from '../assets/icons/github.png'
 
 
 const Social = (props) => {
@@ -24,7 +23,6 @@ const Footer = () => {
       <div className="socialIcon-container">
         <Social href={'http://facebook.com'} src={facebook} />
         <Social href={'http://instagram.com'} src={insta} />
-        <Social href={'http://github.com'} src={github} />
         <Social href={'mailto:clidelee@gmail.com'} src={email} />
       </div>
       <span>Copyright &copy; {currentYear()} PAWFUL All Rights Reserved</span>
