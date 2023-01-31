@@ -1,6 +1,8 @@
+import React, { useState } from "react"
+import { UserContextProvider } from './UserContext'
 import '../App.css'
 import Navbar from './Navbar'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation, Navigate, Outlet } from 'react-router-dom'
 import Home from './Home'
 import Footer from './Footer'
 import AboutUs from './AboutUs'
@@ -10,30 +12,29 @@ import LoginController from './Login'
 import JoinController from './Join'
 import MyAccount from './MyAccount'
 import Booking from './Booking'
+// import signIn from "./Auth"
 
+import AuthRoute from "./AuthRoute"
 
 
 function App() {
 
-  // const JoinWrapper = () => {
-  //   const { id } = useParams()
-  // }
-
-
   return (
   <>
-    <Navbar />
+  <UserContextProvider>
+    <Navbar/>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about_us' element={<AboutUs />} />
         <Route path='/our_services' element={<OurServices />} />
         <Route path='/send_inquiry' element={<SendInquiry />} />
-        <Route path='/login' element={<LoginController />} />
         <Route path='/join' element={<JoinController />} />
-        <Route path='/my_account' element={<MyAccount />} />
-        <Route path='/bookings' element={<Booking />} />
+        <Route path='/login' element={<LoginController />} />
+        <Route path='/my_account' element={<MyAccount />} /> 
+        <Route path='/bookings' element={<Booking />} /> 
       </Routes>
     <Footer />
+  </UserContextProvider>
   </>
   )
 }

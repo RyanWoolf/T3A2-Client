@@ -1,8 +1,8 @@
 import React from 'react'
 import email from '../assets/icons/icon_mail.png'
 import insta from '../assets/icons/instagram.svg'
-import facebook from '../assets/icons/facebook.svg'
-import github from '../assets/icons/github.png'
+import facebook from '../assets/icons/icon_facebook.svg'
+import github from '../assets/icons/icon_github.png'
 
 
 const Social = (props) => {

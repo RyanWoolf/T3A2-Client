@@ -98,6 +98,15 @@
   padding-left: 1rem;
 }
 
+#login-signup-box span{
+  font-size: 1rem;
+}
+
+#login-signup-box img{
+  font-size: 1rem;
+  vertical-align: middle;
+}
+
 .isOpen.false {
   right:-1000px; 
   visibility:hidden;
@@ -342,7 +351,7 @@ footer {
   font-family: "Noto Sans", sans-serif;
 }
 
-.send-inquiry-form input, #selected-date, #packages-dropbox {
+.send-inquiry-form input, .booking-input, #packages-dropbox {
   margin: 0.5rem;
   color: #363636;
   background-color: #0000000f;
@@ -381,10 +390,10 @@ footer {
   color: #fffcf5;
   text-align: center;
   font-size: 0.8rem;
-  font-weight: 400;
-  background-color: #D4B565;
-  padding: 10px;
-  width: 130px;
+  font-weight: 200;
+  background-color: #A59468;
+  padding: 13px;
+  width: 230px;
   border: 0 solid white;
   border-radius: 12px;
   transition: .5s ease;
@@ -458,6 +467,7 @@ footer {
   background-color: #A59468;
   margin-top: 2rem;
   margin-bottom: 1rem;
+  /* margin: 2rem 3rem 1rem 3rem; */
   width: 230px;
   font-family: 'Noto Sans', sans-serif;
   text-align: center;
@@ -488,18 +498,6 @@ footer {
   line-height: 120%;
   text-align: center;
   font-size: 0.6rem;
-}
-
-.weak {
-  border: 2px solid #ff000084;
-}
-
-.average {
-  border: 2px solid #ffd0007d;
-}
-
-.strong {
-  border: 2px solid #00800093;
 }
 
 #my-account {
@@ -617,7 +615,7 @@ footer {
     width: 320px;
   }
 
-  .send-inquiry-form input, #selected-date, #packages-dropbox {
+  .send-inquiry-form input, .booking-input, #packages-dropbox {
     width: 450px;
   }
   
@@ -628,6 +626,10 @@ footer {
   .booking-card {
     width: 350px;
     margin: 1rem 3rem;
+  }
+
+  #booking-input-container {
+    flex-direction: column;
   }
 
   #packages-dropbox {
@@ -774,8 +776,43 @@ footer {
     margin: 1rem 2rem;
   }
 
-  .send-inquiry-form input, #selected-date, #packages-dropbox {
+  .send-inquiry-form input, .booking-input, #packages-dropbox {
     width: 450px;
+  }
+
+  #calendar {
+    order: 1;
+    justify-self: center;
+  }
+
+  #booking-agreement {
+    order: 2;
+  }
+
+  #booking-container {
+    overflow: hidden;
+    justify-content: center;
+    /* left: 0px; */
+    left: calc(100vw/2 - 485px);
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    width: 990px;
+    height: 50vh;
+    max-height: 680px;
+    min-height: 375px;
+    margin-right: 0px;
+    
+    padding-bottom: 1rem;
+    /* margin: 0px; */
+  }
+
+  #booking-input-container {
+    /* display: inline-block; */
+    padding: 0px;
+    width: 520px;
+    flex-direction: column;
+    order: 3;
   }
   
   #inquiry-message {
@@ -788,8 +825,8 @@ footer {
   }
 
   #packages-dropbox {
-    margin-right: 4rem;
-    margin-left: 4rem;
+    /* margin-right: 4rem;
+    margin-left: 4rem; */
   }
 
   #login-bg {
