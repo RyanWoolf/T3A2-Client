@@ -32,11 +32,15 @@ const Home = () => {
       </div>
     </article>
     <section id="home-bg" className="home-context-container flex column a-i-center j-c-center white">
-      <span>- Seen By -</span>
+      <span>Proudly introduced by</span>
       <div className="home-cards-container flex column a-i-center">
         <Card src={urbanlist}/>
         <Card src={mustdo}/>
         <Card src={weekend}/>
+      </div>
+      <div className="homeEnd">
+        <h4>Need recent news?</h4>
+        <span>Please find us on Instagram and Facebook!</span>
       </div>
     </section>
   </main>
