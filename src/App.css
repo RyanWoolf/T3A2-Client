@@ -79,6 +79,15 @@
   text-shadow: 4px 4px 5px #0000009f;
 }
 
+#menu-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0, 0.4);
+}
+
 #menu-wrapper {
   padding: 2.5rem;
   position: fixed; 

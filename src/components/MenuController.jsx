@@ -45,6 +45,11 @@ const MenuController = () => {
         setVisible(!isOpen)
     }
 
+    const clickOutOfMenu = (e) => {
+        setOpen(false)
+        setVisible(false)
+    }
+
     const handleLogoutClick = (evt) => {
         evt.preventDefault()
         alert(`Successfully logged out. \n See you again, ${user.firstName}`)
@@ -56,7 +61,7 @@ const MenuController = () => {
     
 
     return (
-        <MenuControllerContext.Provider value = {{toggleState, toggleStateForMenu, handleLogoutClick, isOpen, isVisible, user}}>
+        <MenuControllerContext.Provider value = {{toggleState, toggleStateForMenu, handleLogoutClick, clickOutOfMenu, isOpen, isVisible, user}}>
             <Link to="/" target="_blank" aria-label="openMenu" onClick={toggleState}
                     aria-haspopup={!isOpen} id="btnOpenMenu">
                 <img src={menuIcon} width="40px" height="40px" />
@@ -69,7 +74,7 @@ const MenuController = () => {
 
 // MenuBox component
 const MenuBox = () => {
-    const {toggleState, toggleStateForMenu, handleLogoutClick, isOpen, isVisible, user} = useContext(MenuControllerContext);
+    const {toggleState, toggleStateForMenu, handleLogoutClick, clickOutOfMenu, isOpen, isVisible, user} = useContext(MenuControllerContext);
 
     // Custom Link component
     const LinkTo = (props) => {
@@ -82,40 +87,43 @@ const MenuBox = () => {
     }
 
     return (
-    <div id="menu-wrapper" className={"shadow-btm isOpen " + isVisible} >
-        <div id="login-signup-box" className="flex a-i-center j-c-sb">
-            {user == undefined ? (
-            <>
-                <LinkTo onClick={toggleStateForMenu} to="/login" src={login} title="Login" />
-                <LinkTo onClick={toggleStateForMenu} to="/join" src={join} title="Join" />
-            </>    ) : (
-            <>
-                <LinkTo onClick={handleLogoutClick} src={logout} title="Logout" />
-                <LinkTo onClick={toggleStateForMenu} to="/my_account" src={join} title="My Account" />
-            </>
-                )}
-            <Link aria-label="closeMenu" onClick={toggleState} id="btnOpenMenu">
-                <img src={closeIcon} width="40px" height="40px" />
-            </Link>
+        <>
+        <div id="menu-wrapper" className={"shadow-btm isOpen " + isVisible}>
+            <div id="login-signup-box" className="flex a-i-center j-c-sb">
+                {user == undefined ? (
+                <>
+                    <LinkTo onClick={toggleStateForMenu} to="/login" src={login} title="Login" />
+                    <LinkTo onClick={toggleStateForMenu} to="/join" src={join} title="Join" />
+                </>    ) : (
+                <>
+                    <LinkTo onClick={handleLogoutClick} src={logout} title="Logout" />
+                    <LinkTo onClick={toggleStateForMenu} to="/my_account" src={join} title="My Account" />
+                </>
+                    )}
+                <Link aria-label="closeMenu" onClick={toggleState} id="btnOpenMenu">
+                    <img src={closeIcon} width="40px" height="40px" />
+                </Link>
+            </div>
+            <nav aria-label="menu" id="menu-container">
+                <ul id='menu-box' name="menu-box">
+                    {menuItems.map((el,idx) => { // menu items rendering
+                        return <li key={idx} >
+                            <Link to={el.to} name={el.title} onClick={toggleStateForMenu}>{el.title}</Link>
+                            </li>
+                    })}
+                </ul>
+            </nav>
+            <div id="social-menu" className="flex a-i-center">
+                <a href="http://instagram.com/" target="_blank">
+                    <img src={insta}/>
+                </a>
+                <a href="http://facebook.com" target="_blank">
+                    <img src={facebook}/>
+                </a>
+            </div>
         </div>
-        <nav aria-label="menu" id="menu-container">
-            <ul id='menu-box' name="menu-box">
-                {menuItems.map((el,idx) => { // menu items rendering
-                    return <li key={idx} >
-                        <Link to={el.to} name={el.title} onClick={toggleStateForMenu}>{el.title}</Link>
-                        </li>
-                })}
-            </ul>
-        </nav>
-        <div id="social-menu" className="flex a-i-center">
-            <a href="http://instagram.com/" target="_blank">
-                <img src={insta}/>
-            </a>
-            <a href="http://facebook.com" target="_blank">
-                <img src={facebook}/>
-            </a>
-        </div>
-    </div>
+        {isVisible ? <div id="menu-background" onClick={clickOutOfMenu}></div> : ''}
+    </>
     )    
 }
 export default MenuController;
