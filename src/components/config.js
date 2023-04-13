@@ -4,8 +4,8 @@ import bath from '../assets/icons/icon_bath.png'
 import checkup from '../assets/icons/icon_checkup.png'
 
 
-// export const fetchURL = `http://localhost:4717`
-export const fetchURL = `https://t3a2-b-server-production-542a.up.railway.app`
+export const fetchURL = `http://localhost:4717`
+// export const fetchURL = `https://t3a2-b-server-production-542a.up.railway.app`
 
 
 export const menuItems=[

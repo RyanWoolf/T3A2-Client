@@ -54,6 +54,7 @@ const JoinController = () => {
         
         const data = await returnedUser.json()
         .then((res) => {
+          console.log(res)
           console.log("Attempting to register in DB")
           if (res.code == 201) {
             setUser({
@@ -63,17 +64,19 @@ const JoinController = () => {
               })
             alert("Thanks for registering!")
             return nav('/my_account')
+          } else if (res.code == 406) {
+            setUser(null)
+            alert(`${res.message}. Please try again with another email.`)
           }
         })
-        .catch((err) => {
-          console.log(err)
-          setUser(null) 
-          alert("Failed to register. Please try again")
+        .catch(err => {
+          setUser(null)
+          alert(`We're experiencing server fail. Please try again later.`)
         })
       } catch (err) {
           setUser(null)
-          console.error(err)
-          alert("Failed to register. Please try again")
+          alert(`We're experiencing server fail. Please try again later.`)
+          return
       }}
 
     const submit = async (evt) => {
@@ -91,9 +94,6 @@ const JoinController = () => {
           form.phone_number, 
           form.password )
       }
-      setUser(null)
-      console.error(`${form.email} is in used. Register failed`)
-      return alert(`${form.email} is already in use. Please try other email.`)
     }
 
 
@@ -102,7 +102,7 @@ const JoinController = () => {
         <h2 className='heading' id="login-heading">Create an account</h2>
         <Link to="/login" className='sub-desc'>Already have an account? Login here</Link>
         <input value={email} onInput={handleForm} required className="login-input" 
-          type="email" name="email" placeholder='Email *' 
+          type="email" name="email" placeholder='Email *' autocomplete='off'
           pattern="[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.]+[a-zA-Z]+[.]*[a-zA-Z]*"/>
         <select defaultValue="DEFAULT" onChange={handleForm} className="login-input" name="title">
           <option value="DEFAULT" disabled hidden>Title</option>
@@ -111,15 +111,15 @@ const JoinController = () => {
           })}
         </select>
         <input value={first_name} onChange={handleForm} 
-          required className="login-input" type="text" 
+          required className="login-input" type="text" autocomplete='off'
           name="first_name" placeholder='First name *'/>
         <input value={last_name} onChange={handleForm} 
-          required className="login-input" type="text" 
+          required className="login-input" type="text" autocomplete='off'
           name="last_name" placeholder='Last name *'/>
         <input value={phone_number} onChange={handleForm} 
-          pattern="[0-9]{10}" className="login-input" 
+          pattern="[0-9]{10}" className="login-input" autocomplete='off'
           type="tel" name="phone_number" placeholder='Phone number'/>
-        <input value={password} onChange={handleForm} required id="password" 
+        <input value={password} onChange={handleForm} required id="password" autocomplete='off'
         className="login-input" name="password" type="password" placeholder="Password *" />
         <input id="submit-btn" onClick={submit} type="submit" value="Create my account" />
         <span className="agreement">By creating an account,<br/> you agree to our Terms & conditions and Privacy notice on how we manage your personal information.</span>
