@@ -323,7 +323,7 @@ footer {
 }
 
 .heading-container h2 {
-  font-size: 2.5rem;
+  font-size: 1.8rem;
 }
 
 .heading-container a {
@@ -380,6 +380,17 @@ footer {
 .package-card h2 {
   padding-bottom: 1rem;
   font-size: 2.25rem;
+}
+
+.send-inquiry-sentence {
+  margin-top: -40px;
+  margin-bottom: 30px;
+}
+.send-inquiry-sentence p {
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 300;
+  text-align: left;
 }
 
 .send-inquiry-form {
@@ -770,7 +781,7 @@ footer {
 
   .homeEnd {
     margin-top: -50px;
-    margin-bottom: 90px;
+    margin-bottom: 180px;
   }
 
   .seenby-card {
@@ -810,6 +821,10 @@ footer {
     width: 70%;
     max-width: 1000px;
     /* left: 20%; */
+  }
+
+  .heading-container h2 {
+    font-size: 2.2rem;
   }
   
   .context-container {
@@ -887,6 +902,8 @@ footer {
     flex-direction: column;
     order: 3;
   }
+
+
   
   #inquiry-message {
     width: 450px;
@@ -933,9 +950,9 @@ footer {
   }
 
   #page-container {
-    min-height: 100vh;
+    /* min-height: 100vh; */
     height: max-content;
-    margin-bottom: 130px;
+    margin-bottom: 30px;
     z-index: -1;
     position:relative;
   } 

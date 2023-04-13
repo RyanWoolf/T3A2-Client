@@ -59,6 +59,7 @@ const JoinController = () => {
           if (res.code == 201) {
             setUser({
               _id: res.user_id,
+              email: res.email,
               firstName: res.firstName,
               tk: res.token
               })

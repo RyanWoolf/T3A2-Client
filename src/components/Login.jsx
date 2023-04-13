@@ -79,6 +79,7 @@ const LoginController = () => {
         if (response.code == 200) {
           setUser({
             _id: response.user_id,
+            email: response.email,
             firstName: response.firstName,
             tk: response.token
             })
