@@ -116,12 +116,12 @@ const BookingCard = ({ booking, date, pkg, time, price }) => {
         </div> 
         <div className="booking-detail">
           <h3>{pkg}</h3>
-          <p className='heading-description'>{time} up to 1 hour</p>
+          <p className='heading-description'>{time}0 up to 1 hour</p>
           <div className="modify-booking-box">
             <h3>$ {price}</h3>
             <Link className="" to={`/bookings/update`} onClick={addBookingToUserContext}>Modify</Link>
             <span className="" > | </span>
-            <Link className="" to="" onClick={deleteBooking}>Cancel</Link>
+            <Link className="" to="" onClick={deleteBooking}  onMouseEnter={()=>console.log(date)}>Cancel</Link>
           </div>
         </div>
       </div>
@@ -134,7 +134,7 @@ const BookingNowCard = () => {
   return (
     <div className="booking-card flex a-i-center shadow-btm">
       <div id="book-now-card" className="booking-date flex column a-i-center">
-        <Link className="" to={`/bookings/`} > 
+        <Link className="" to={`/bookings/`}> 
           <img src={add_button}/>
           <h3>New booking</h3>
           </Link>
@@ -155,11 +155,17 @@ const BookingCardContainer = () => {
     <div id="booking-cards-container" className="cards-container flex column a-i-center j-c-center">
           {
             bookings.map((el, idx) => {
+              const today = new Date
+              const bookingDate = new Date(`${el.date.year}-${el.date.month}-${el.date.date}`)
+              // If the booking is past, not rendering.
+              if (today.getTime() < bookingDate.getTime()) {
+                return
+              }
               return (
                 <BookingCard 
                   key={idx}
                   booking={el}
-                  date={{date: el.date.date, month: el.date.month}}
+                  date={{date: el.date.date, month: el.date.month, year: el.date.year}}
                   pkg={el.pkg.name}
                   time={el.date.time}
                   price={el.pkg.price}
@@ -183,8 +189,8 @@ const BookingCardContainer = () => {
       </div>
     </article>
     <section className="context-container flex column a-i-left">
-      <div className="flex column">
-        <h2 className="heading">My detail</h2>
+      <div className="flex" id="my-detail-container">
+        <h2 className="heading" id="my-detail">My detail</h2>
         <Link id="update-my-detail" to="/my_account/update" className='sub-menu flex'>
           <img src={my_detail} width="25px"/>Update my detail</Link>
       </div>
