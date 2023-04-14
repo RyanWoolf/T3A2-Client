@@ -161,7 +161,7 @@ const Booking = () => {
       <Calendar id="calendar" cb={handleForm} />
       <div id="booking-input-container" className="cards-container flex column a-i-center j-c-center">
         <select 
-          defaultValue={state.pkg_name || "DEFAULT"}
+          defaultValue={state?.pkg_name ? state.pkg_name : "DEFAULT"}
           onChange={handleForm} 
           id="packages-dropbox" 
           required 
