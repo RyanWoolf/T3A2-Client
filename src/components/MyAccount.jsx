@@ -158,7 +158,7 @@ const BookingCardContainer = () => {
               const today = new Date
               const bookingDate = new Date(`${el.date.year}-${el.date.month}-${el.date.date}`)
               // If the booking is past, not rendering.
-              if (today.getTime() < bookingDate.getTime()) {
+              if (today.getTime() > bookingDate.getTime()) {
                 return
               }
               return (
