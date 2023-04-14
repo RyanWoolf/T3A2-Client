@@ -12,7 +12,7 @@ const OurServices = () => {
         <h3>From</h3>
         <h2>$ {props.price}</h2>
         <span className="division-line"></span>
-        <Link to={"/bookings"}><h3 className="btn" name="Book-Now">Book now</h3></Link>
+        <Link to={'/bookings'}  state={{pkg_name: props.name, pkg_price: props.price}} ><h3 className="btn" name="Book-Now">Book now</h3></Link>
       </div>
     )
   }

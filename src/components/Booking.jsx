@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import DatePicker from 'react-datepicker'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import setHours from "date-fns/setHours"
 import setMinutes from "date-fns/setMinutes"
 import "react-datepicker/dist/react-datepicker.css"
@@ -10,13 +10,14 @@ import { ourPackages, fetchURL } from "./config"
 
 
 const Booking = () => {
+  const { state } = useLocation()
   const { user } = useUserContext()
   const nav = useNavigate()
   const [ form, setForm ] = useState({
     _id: '',
     date: '',
-    pkg_name: '',
-    pkg_price: '',
+    pkg_name: state ? state.pkg_name : '',
+    pkg_price: state ? state.pkg_price : '',
     dog_name: '',
     dog_gender: '',
     dog_age: '',
@@ -24,10 +25,9 @@ const Booking = () => {
   })
 
   useEffect(() => {
-    if (user == undefined) {
-      nav('/login')
-    }
-    console.log("New booking page renders")
+      if (user == undefined) {
+        nav('/login')
+      }
     }, [])
 
   const Calendar = () => {
@@ -142,6 +142,7 @@ const Booking = () => {
       )
     } else {
       alert('Please provide the required information.')
+      return
     }
   }
   
@@ -160,7 +161,7 @@ const Booking = () => {
       <Calendar id="calendar" cb={handleForm} />
       <div id="booking-input-container" className="cards-container flex column a-i-center j-c-center">
         <select 
-          defaultValue="DEFAULT"
+          defaultValue={state.pkg_name || "DEFAULT"}
           onChange={handleForm} 
           id="packages-dropbox" 
           required 

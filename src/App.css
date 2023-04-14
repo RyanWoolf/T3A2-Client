@@ -852,7 +852,7 @@ footer {
   }
 
   #packages-container {
-    margin-bottom: 130px;
+    /* margin-bottom: 130px; */
   }
 
   .package-card {
