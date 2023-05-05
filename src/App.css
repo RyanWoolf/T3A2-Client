@@ -529,6 +529,7 @@ footer {
   margin-bottom: 1rem;
   /* margin: 2rem 3rem 1rem 3rem; */
   width: 230px;
+  height: 44px;
   font-family: 'Noto Sans', sans-serif;
   text-align: center;
   font-size: 0.8rem;
@@ -560,6 +561,39 @@ footer {
   margin-top: 15px;
   font-size: 0.6rem;
 }
+
+.loader {
+  width: 25px;
+  height: 25px;
+  left: 45%;
+  border: 4px solid #ffffffce;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  position: absolute;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+.loader-container {
+  background-color: rgba(61, 61, 61, 0.472);
+  width: 230px;
+  height: 44px;
+  position: absolute;
+  /* text-align: center;  */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+  }
+    100% {
+      transform: rotate(360deg);
+  }
+} 
 
 #my-account {
   background-image: url("./assets/background2.jpg");

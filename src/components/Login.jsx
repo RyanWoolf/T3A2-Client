@@ -32,7 +32,16 @@ const Login = ({ email, password, handle, logIn }) => {
           name="password"
           onChange={handle}
       />
-      <Link name="login-button" onClick={logIn}><h3 className="btn login-btn">LOGIN</h3></Link>
+      <div style={{ height: '92px' }}>
+        <div className="loader-container login-btn" style={{ display: 'none' }}>
+          <span className="loader"></span>
+        </div>
+        <Link name="login-button" onClick={logIn}>
+          <div className="btn login-btn">
+            <p>Login</p>
+          </div>
+        </Link>
+      </div>
       <Link name="forgot-password" to="/send_inquiry" className='sub-desc'>Forgot password?</Link>
     </>
   )
@@ -60,11 +69,15 @@ const LoginController = () => {
   }, [])
 
   const logIn = async (evt) => {
+    const loginBtn = document.querySelector('.login-btn p')
+    const loader = document.querySelector('.loader-container')
     evt.preventDefault()
     if (!form.email || !form.password) {
       return alert('Please enter your email and password')
     }
     try {
+      loginBtn.style.display = 'none'
+      loader.style.display = 'block'
       const returnedUser = await fetch(fetchURL + '/users/login', {
         method: 'POST',
         headers: {
@@ -84,16 +97,22 @@ const LoginController = () => {
             tk: response.token
             })
           alert(response.message)
+          loginBtn.style.display = 'block'
+          loader.style.display = 'none'
           return nav('/my_account')
         }
         alert("Failed to login. Please try again")
-          setUser(undefined)
-          setForm({
-            email: '',
-            password: ''
-          })
+        loginBtn.style.display = 'block'
+        loader.style.display = 'none'
+        setUser(undefined)
+        setForm({
+          email: '',
+          password: ''
+        })
       })
     } catch {
+      loginBtn.style.display = 'block'
+      loader.style.display = 'none'
       alert("Failed to login. Please try again")
       setUser(undefined)
       setForm({
@@ -118,7 +137,7 @@ const LoginController = () => {
   return (
     <UserBoxController 
       children={
-        <form id='login-form' className='flex column j-c-center a-i-center' > 
+        <form id='login-form' className='flex column j-c-center a-i-center' >
           <Login 
             email={form.email} password={form.password} handle={handleForm} logIn={logIn}/>
         </form>

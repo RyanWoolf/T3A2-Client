@@ -41,8 +41,12 @@ const JoinController = () => {
         phoneNumber: phone_number,
         password: password 
       }
+      const loginBtn = document.querySelector('.login-btn p')
+      const loader = document.querySelector('.loader-container')
       
       try { 
+        loginBtn.style.display = 'none'
+        loader.style.display = 'block'
         const returnedUser = await fetch(fetchURL + '/users/register', {
           method: 'POST',
           headers: {
@@ -64,18 +68,26 @@ const JoinController = () => {
               tk: res.token
               })
             alert("Thanks for registering!")
+            loginBtn.style.display = 'block'
+            loader.style.display = 'none'
             return nav('/my_account')
           } else if (res.code == 406) {
             setUser(null)
+            loginBtn.style.display = 'block'
+            loader.style.display = 'none'
             alert(`${res.message}. Please try again with another email.`)
           }
         })
         .catch(err => {
           setUser(null)
+          loginBtn.style.display = 'block'
+          loader.style.display = 'none'
           alert(`We're experiencing server fail. Please try again later.`)
         })
       } catch (err) {
           setUser(null)
+          loginBtn.style.display = 'block'
+          loader.style.display = 'none'
           alert(`We're experiencing server fail. Please try again later.`)
           return
       }}
@@ -122,7 +134,16 @@ const JoinController = () => {
           type="tel" name="phone_number" placeholder='Phone number'/>
         <input value={password} onChange={handleForm} required id="password" autocomplete='off'
         className="login-input" name="password" type="password" placeholder="Password *" />
-        <input id="submit-btn" onClick={submit} type="submit" value="Create my account" />
+        <div style={{ height: '92px' }}>
+          <div className="loader-container login-btn" style={{ display: 'none' }}>
+            <span className="loader"></span>
+          </div>
+          <Link name="login-button" onClick={submit}>
+            <div className="btn login-btn">
+              <p>Submit</p>
+            </div>
+          </Link>
+        </div>
         <span className="agreement">By creating an account,<br/> you agree to our Terms & conditions and Privacy notice on how we manage your personal information.</span>
       </>
     )

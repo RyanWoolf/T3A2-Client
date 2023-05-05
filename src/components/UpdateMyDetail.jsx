@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useUserContext } from './UserContext'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { fetchURL, titles } from './config'
 import UserBoxController from './UserBoxController'
 
@@ -50,9 +50,7 @@ const Update = () => {
           last_name: res.lastName,
           phone_number: res.phoneNumber
         })
-        console.log("userdetail", res)
-
-        console.log(user)})
+      })
     }
     fetchUserDetail()
   }, [])
@@ -66,9 +64,13 @@ const Update = () => {
       lastName: last_name,
       phoneNumber: phone_number,
     }
+    const loginBtn = document.querySelector('.login-btn p')
+    const loader = document.querySelector('.loader-container')
     
     // Post new user to API
 
+    loginBtn.style.display = 'none'
+    loader.style.display = 'block'
     const returnedUser = await fetch(`${fetchURL}/users/${user._id}`, {
       method: 'PUT',
       headers: {
@@ -85,8 +87,8 @@ const Update = () => {
         _id: res._id,
         firstName: res.firstName,
       })
-      console.log(res)
-      console.log(user)
+      loginBtn.style.display = 'block'
+      loader.style.display = 'none'
     })
   }
 
@@ -97,7 +99,6 @@ const Update = () => {
     if ( !form.first_name || !form.last_name ) {
       return alert('Please enter the required fields')
     } else {
-      console.log("Updating user detail", form)
       evt.preventDefault()
       await updateUserDetail( 
         form.title, 
@@ -127,7 +128,16 @@ const Update = () => {
       <input value={phone_number} onChange={handleForm} 
         pattern="[0-9]{10}" className="login-input" 
         type="tel" name="phone_number" placeholder='Phone number'/>
-      <input id="submit-btn" onClick={submit} type="submit" value="Save" />
+      <div style={{ height: '92px' }}>
+        <div className="loader-container login-btn" style={{ display: 'none' }}>
+          <span className="loader"></span>
+        </div>
+        <Link name="login-button" onClick={submit}>
+          <div className="btn login-btn">
+            <p>Submit</p>
+          </div>
+        </Link>
+      </div>
     </>
   )
 }

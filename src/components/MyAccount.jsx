@@ -32,7 +32,7 @@ const MyAccount = () => {
     })
     const data = await bookings.json()
     .then((res) => {
-      console.log("Bookings result" , res)
+      console.log("Bookings found")
       setBookings(res)
       setLoading(false)
     }).catch((err) => {
@@ -46,7 +46,6 @@ const MyAccount = () => {
   useEffect(() => {
     setLoading(true)
     console.log("My account page renders")
-    console.log(user)
     try {
       if (user == undefined) {
         nav('/login')}
