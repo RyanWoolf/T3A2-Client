@@ -271,7 +271,7 @@
   width: 100vw;
   height: auto;
   padding: 2rem 2rem;
-  padding-bottom: 100px;
+  /* padding-bottom: 100px; */
   background-color: white;
 }
 
@@ -845,7 +845,7 @@ footer {
     width: 850px;
     position: relative;
     top: -150px;
-    margin-bottom: -150px;
+    /* margin-bottom: -150px; */
     order: 10;
     left: calc(100vw/2 - 425px);
   }
@@ -960,8 +960,7 @@ footer {
   }
 
   #page-container {
-    /* min-height: 100vh; */
-    height: max-content;
+    height: auto;
     margin-bottom: 30px;
     z-index: -1;
     position:relative;
